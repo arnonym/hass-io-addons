@@ -1,6 +1,6 @@
 {
   "name": "KNXD daemon",
-  "version": "0.3.12",
+  "version": "0.3.13",
   "slug": "knxd",
   "description": "KNXD daemon you can use to create a KNX/IP gateway via TPUART or USB bus adapters",
   "startup": "services",
