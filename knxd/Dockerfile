@@ -2,44 +2,43 @@ ARG BUILD_FROM
 FROM ${BUILD_FROM}
 
 ENV LANG C.UTF-8
-
+ARG KNXD_VERSION
 RUN set -xe \
     && apk update \
-    && apk add --no-cache \
-               jq \
-               build-base \
-               gcc \
-			   git \
-               abuild \
-               binutils \
-               libev-dev \
-               automake \
-               autoconf \
-               libtool \
-               argp-standalone \
-               linux-headers \
-               libusb-dev \
-               libusb \
-               cmake \
-               dev86 \
-     && git clone -b stable https://github.com/knxd/knxd.git \
+    && apk add --no-cache --virtual .build-dependencies \
+                build-base \
+                gcc \
+                git \
+                abuild \
+                binutils \
+                automake \
+                autoconf \
+                libtool \
+                argp-standalone \
+                linux-headers \
+                libev-dev \
+                libusb-dev \
+                cmake \
+                dev86 \
+     && apk add --no-cache \
+                udev \
+                libusb \
+                libev \
+     && git clone --branch "${KNXD_VERSION}" --depth 1 https://github.com/knxd/knxd.git \
      && cd knxd \
      && ./bootstrap.sh \
      && ./configure --disable-systemd --enable-tpuart --enable-usb --enable-eibnetipserver --enable-eibnetip --enable-eibnetserver --enable-eibnetiptunnel \
      && mkdir -p src/include/sys && ln -s /usr/lib/bcc/include/sys/cdefs.h src/include/sys \
      && make \
-     && make install
-
-# EXPOSE 3672 6720
-
-# VOLUME /etc/knxd
-#COPY docker-healthcheck /home/docker-healthcheck
-#RUN chmod +x /home/docker-healthcheck
-#CMD ["knxd","/etc/knxd/knxd.ini"]
-
+     && make install \
+     && make clean \
+     && cd .. \
+     && rm -rf knxd \
+     && apk del --purge .build-dependencies
 
 # Copy data for add-on
 COPY run.sh /
 RUN chmod a+x /run.sh
+RUN dos2unix /run.sh
 
 CMD [ "/run.sh" ]
