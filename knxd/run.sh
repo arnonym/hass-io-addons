@@ -25,15 +25,15 @@ client-addrs = $CLIENT_ADDRESS
 connections = server,A.tcp,interface
 logfile = /dev/stdout
 
-[debug-interface]
+[interface-debug]
 error-level = 6
 trace-mask = 0xffe
 
-[debug-main]
+[main-debug]
 error-level = 6
 trace-mask = 0xffe
 
-[debug-server]
+[server-debug]
 error-level = 6
 trace-mask = 0xffe
 
