@@ -25,18 +25,6 @@ client-addrs = $CLIENT_ADDRESS
 connections = server,A.tcp,interface
 logfile = /dev/stdout
 
-[interface-debug]
-error-level = 6
-trace-mask = 0xffe
-
-[main-debug]
-error-level = 6
-trace-mask = 0xffe
-
-[server-debug]
-error-level = 6
-trace-mask = 0xffe
-
 [A.tcp]
 server = knxd_tcp
 
@@ -46,6 +34,11 @@ tunnel = tunnel
 router = router
 discover = true
 name = knxd
+debug = debug-server
+
+[debug-server]
+error-level = 6
+trace-mask = 0xffe
 
 [interface]
 driver = $INTERFACE
