@@ -45,7 +45,7 @@ driver = $INTERFACE
 device = $DEVICE
 debug = debug-interface
 
-[debug-server]
+[debug-interface]
 error-level = 6
 trace-mask = 0xffe
 $IF_SECTION"
