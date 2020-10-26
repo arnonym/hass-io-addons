@@ -27,6 +27,15 @@ logfile = /dev/stdout
 
 [debug-interface]
 error-level = 6
+trace-mask = 0xffe
+
+[debug-main]
+error-level = 6
+trace-mask = 0xffe
+
+[debug-server]
+error-level = 6
+trace-mask = 0xffe
 
 [A.tcp]
 server = knxd_tcp
