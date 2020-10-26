@@ -47,4 +47,4 @@ else
     echo "$KNX_INI" >> /etc/knxd.ini
 fi
 
-exec knxd /etc/knxd.ini
+exec knxd --error=9 --trace=1023 /etc/knxd.ini
