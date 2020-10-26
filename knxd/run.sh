@@ -25,7 +25,7 @@ client-addrs = $CLIENT_ADDRESS
 connections = server,A.tcp,interface
 logfile = /dev/stdout
 
-[debug-main]
+[debug-server]
 error-level = 6
 
 [A.tcp]
