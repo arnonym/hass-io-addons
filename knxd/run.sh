@@ -24,6 +24,7 @@ addr = $ADDRESS
 client-addrs = $CLIENT_ADDRESS
 connections = server,A.tcp,interface
 logfile = /dev/stdout
+error-level = 6
 
 [A.tcp]
 server = knxd_tcp
